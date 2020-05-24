@@ -1,49 +1,20 @@
 # i3blocks config file
-#
-# Please see man i3blocks for a complete reference!
-# The man page is also hosted at http://vivien.github.io/i3blocks
-#
-# List of valid properties:
-#
-# align
-# color
-# command
-# full_text
-# instance
-# interval
-# label
-# min_width
-# name
-# separator
-# separator_block_width
-# short_text
-# signal
-# urgent
 
-# Global properties
-#
-# The top properties below are applied to every block, but can be overridden.
-# Each block command defaults to the script name to avoid boilerplate.
-command=/usr/share/i3blocks/$BLOCK_NAME
+command=~/.config/i3blocks/scripts/$BLOCK_NAME
 separator=false
 separator_block_width=30
 markup=pango
 
-# Brightness
-[brightness]
-command=/usr/share/i3blocks/brightness
+[backlight]
+command=~/.config/i3blocks/scripts/backlight/backlight
+label=🔆 
 interval=once
-label=💡
 signal=10
+
 # Volume indicator
-#
-# The first parameter sets the step (and units to display)
-# The second parameter overrides the mixer selection
-# See the script for details.
 [volume]
-command=/usr/share/i3blocks/volume 5 pulse
-instance=Master
-#instance=PCM
+command=~/.config/i3blocks/scripts/volume/volume
+label=🔈 
 interval=once
 signal=10
 
@@ -53,26 +24,19 @@ interval=once
 signal=10
 
 # Battery indicator
-[battery]
-command=/usr/share/i3blocks/dualbattery
+[dualbattery]
+command=~/.config/i3blocks/scripts/dualbattery/dualbattery.sh
 interval=once
 signal=10
 
 # Date Time
-[date]
-command=date '+%d/%m/%Y'
-interval=once
-label=📅
-signal=10
-
 [time]
-command=date '+%H:%M  ' 
+command=date +'%a %d %b %H:%M'
+label=📅  
 interval=once
-label=🕑
 signal=10
 
 # Generic media player support
-#
 # This displays "ARTIST - SONG" if a music is playing.
 # Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
 #[mediaplayer]
@@ -81,26 +45,24 @@ signal=10
 #signal=10
 
 # OpenVPN support
-#
 # Support multiple VPN, with colors.
 #[openvpn]
 #interval=20
 
 # Temperature
-#
 # Support multiple chips, though lm-sensors.
 # The script may be called with -w and -c switches to specify thresholds,
 # see the script for details.
+
 #[temperature]
 #label=TEMP
 #interval=10
 
 # Key indicators
-#
 # Add the following bindings to i3 config file:
-#
 # bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 # bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
+
 #[keyindicator]
 #instance=CAPS
 #interval=once
