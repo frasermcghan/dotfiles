@@ -1,22 +1,14 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-" Colour Scheme
-Plugin 'morhetz/gruvbox'
-" File Tree
-Plugin 'scrooloose/nerdtree'
-
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#begin('~/.vim/plugged')
+Plug 'lifepillar/vim-solarized8'
+Plug 'dense-analysis/ale'
+Plug 'ycm-core/YouCompleteMe'
+call plug#end()
 
 syntax on
+
+set termguicolors
+set background=dark
+colorscheme solarized8_high
 
 set hidden
 set noerrorbells
@@ -34,18 +26,17 @@ set undofile
 set incsearch
 set hlsearch
 
-set colorcolumn=80
-highlight ColorColumn ctermbg=0 guibg=lightgrey
+imap jk <Esc>
 
-set background=dark
-let g:gruvbox_contrast_dark='hard'
-let g:gruvbox_contrast_light='hard'
-colorscheme gruvbox
 
-nmap <C-n> :NERDTreeToggle<CR>
-
-inoremap ( ()<Esc>i
-inoremap [ []<Esc>i
-inoremap { {}<Esc>i
-inoremap " ""<Esc>i
-inoremap ' ''<Esc>i
+" ------------- ALE config -------------
+" pressing Control-e moves to next error
+nmap <silent> <C-e> <Plug>(ale_next_wrap)
+" don't lint when opening a file
+let g:ale_lint_on_enter = 0
+" lint when saving file
+let g:ale_lint_on_save = 1
+" no error background colours
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
+" -------------------------------------
